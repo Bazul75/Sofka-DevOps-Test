@@ -1,0 +1,17 @@
+trigger:
+- main
+
+
+stages:
+- stage: __default
+  pool:
+    vmImage: ubuntu-latest 
+  jobs:
+  - job: BuildAplication
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'dockerhub-sc'
+        repository: 'timeoff'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
